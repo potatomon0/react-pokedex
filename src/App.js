@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import {Route, Routes} from 'react-router-dom'
+import PkmInfo from './pages/PkmInfo'
+import List from './pages/List'
+import Nav from './components/Nav'
+import Main from './pages/Main'
+import axios from 'axios'
+// import {AppContext} from './contexts/app_context'
+import React,{useState,useEffect,createContext} from 'react'
+export const AppContext= createContext()
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(){
+    const [database,setDatabase]=useState("")
+    const getPkm =async()=>{
+        // let pkmData = await axios.get(`https://pokeapi.co/api/v2/pokemon/`)
+        let pkmData = await axios.get(`https://api.jikan.moe/v4/anime/`)
+        // console.log(pkmData)
+        let dex = await pkmData.data.results
+        setDatabase(dex)
+        console.log(database)
+    }
+    useEffect(()=>{
+        getPkm()
+    },[])
+    return(
+        <div className='App'>
+            <AppContext.Provider value={{database,setDatabase}}>
+            <Routes>
+                <Route path="/" element={<Main/>}/>
+                <Route path="/List" element={<List/>}/>
+                <Route path="/PkmInfo" element={<PkmInfo/>}/>
+            </Routes></AppContext.Provider>
+            <Nav />
+        </div>
+    )
 }
-
-export default App;
+export default App

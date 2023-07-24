@@ -1,0 +1,12 @@
+.pageOptions{
+    border:solid black;
+    display:flex;
+    justify-content: space-around;
+}
+.App{
+    text-align:center;
+}
+.title{
+    border:solid red;
+    
+}
