@@ -1,8 +1,13 @@
 import React from 'react'
+import {useParams} from 'react-router-dom'
 
-function PkmInfo() {
+function PkmInfo(props) {
+  const params = useParams()
+  const pkm = params.name
   return (
-    <div>PkmInfo</div>
+    <div>
+      {console.log(pkm)}
+    </div>
   )
 }
 

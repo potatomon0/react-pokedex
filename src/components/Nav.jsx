@@ -7,12 +7,12 @@ function Menu() {
       <Link to="/">
       <div>Main</div>
       </Link>
-      <Link to="/List">
+      <Link to="/pokemon">
       <div>List</div>
       </Link>
-      <Link to="/PkmInfo">
+      {/* <Link to="/PkmInfo">
       <div>PkmInfo</div>
-      </Link>
+      </Link> */}
     </div>
   )
 }
